@@ -34,7 +34,7 @@ jobs:
       - name: Install packages
         run: |
           sudo apt -y update
-          sudo apt -y install device-tree-compiler
+          sudo apt -y install device-tree-compiler libdevel
 
       - uses: taiki-e/install-action@cargo-hack
       - name: Check
