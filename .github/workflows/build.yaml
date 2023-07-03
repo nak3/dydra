@@ -31,6 +31,11 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Install packages
+        run: |
+          sudo apt -y update
+          sudo apt -y install device-tree-compiler
+
       - uses: taiki-e/install-action@cargo-hack
       - name: Check
         run: cargo hack check --all-targets --feature-powerset --ignore-private
@@ -38,11 +43,6 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - name: Prereqs
         run: cargo install cross --git https://github.com/cross-rs/cross
-
-      - name: Install headers
-        run: |
-          sudo apt -y update
-          sudo apt -y install device-tree-compiler
 
       - name: Build
         run: cross build --verbose --target ${{matrix.arch}}
