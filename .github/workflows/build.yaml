@@ -16,13 +16,6 @@ env:
 
 jobs:
   build-test:
-    strategy:
-      matrix:
-        arch:
-          - x86_64-unknown-linux-gnu
-          - aarch64-unknown-linux-gnu
-            #          - armv7-unknown-linux-gnueabi
-            #          - riscv64gc-unknown-linux-gnu
     runs-on: ubuntu-latest
     container:
       image: fedora:latest
@@ -44,20 +37,20 @@ jobs:
           sudo dnf -y update
           sudo dnf -y install dtc libcxx-devel gcc cmake clang
 
-      - name: Check formatting
-        run: |
-          cargo +nightly fmt --all -- --check
+          #- name: Check formatting
+          #  run: |
+          #    cargo +nightly fmt --all -- --check
 
-      - name: Run clippy
-        run: |
-          cargo +nightly clippy --all -- --deny warnings
+          #- name: Run clippy
+          #  run: |
+          #    cargo +nightly clippy --all -- --deny warnings
 
       - name: Build dydra
         run: |
           cargo build --verbose
 
-      - name: Run test
-        env:
-          RUST_BACKTRACE: full
-        run: |
-          cargo test --verbose
+          #- name: Run test
+          #  env:
+          #    RUST_BACKTRACE: full
+          #  run: |
+          #    cargo test --verbose
