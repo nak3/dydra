@@ -39,6 +39,11 @@ jobs:
       - name: Prereqs
         run: cargo install cross --git https://github.com/cross-rs/cross
 
+      - name: Install headers
+        run: |
+          sudo apt -y update
+          sudo apt -y install device-tree-compiler
+
       - name: Build
         run: cross build --verbose --target ${{matrix.arch}}
 
