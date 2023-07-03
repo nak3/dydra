@@ -49,4 +49,4 @@ jobs:
         env:
           RUST_BACKTRACE: full
         run: |
-          cross test --verbose # --target ${{matrix.arch}}
+          cargo test --verbose # --target ${{matrix.arch}}
