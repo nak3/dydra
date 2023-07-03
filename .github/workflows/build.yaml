@@ -24,6 +24,8 @@ jobs:
             #          - armv7-unknown-linux-gnueabi
             #          - riscv64gc-unknown-linux-gnu
     runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
     steps:
       - uses: actions/checkout@v3
 
@@ -33,8 +35,10 @@ jobs:
 
       - name: Install packages
         run: |
-          sudo apt -y update
-          sudo apt -y install device-tree-compiler libc++-dev libc++abi-dev
+          #          sudo apt -y update
+          #          sudo apt -y install device-tree-compiler libc++-dev libc++abi-dev
+          sudo dnf -y update
+          sudo dnf -y install dtc libc++-dev
 
       - uses: taiki-e/install-action@cargo-hack
       - name: Check
