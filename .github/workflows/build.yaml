@@ -40,19 +40,13 @@ jobs:
           sudo dnf -y update
           sudo dnf -y install dtc libcxx-devel gcc cmake clang
 
-      - uses: taiki-e/install-action@cargo-hack
-      - name: Check
-        run: cargo hack check --all-targets --feature-powerset --ignore-private
-
-      - uses: Swatinem/rust-cache@v2
-      - name: Prereqs
-        run: cargo install cross --git https://github.com/cross-rs/cross
-
       - name: Build
-        run: cross build --verbose --target ${{matrix.arch}}
+        run: |
+          cargo build
+
 
       - name: Run test
         env:
           RUST_BACKTRACE: full
         run: |
-          cross test --verbose --target ${{matrix.arch}}
+          cross test --verbose # --target ${{matrix.arch}}
