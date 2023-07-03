@@ -33,6 +33,12 @@ jobs:
         with:
           toolchain: stable
 
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          components: rust-src
+          override: false
+
       - name: Install packages
         run: |
           sudo dnf -y update
